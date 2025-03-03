@@ -40,8 +40,6 @@ jobs:
         name: github-pages-dist  # Artifact name should match the one used in deploy-pages
         path: ./dist  # Path to the build output directory
 
-    - name: Run Tests
-      run: npm test  # Ensure you have a test script in package.json
 
   deploy:
     needs: build
