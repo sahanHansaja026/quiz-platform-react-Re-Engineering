@@ -16,11 +16,11 @@ jobs:
 
     permissions:
       contents: read
-      id-token: write  # Add this permission
+      id-token: write  # For OIDC token
+      pages: write     # Add the pages: write permission here
 
     steps:
     - uses: actions/checkout@v4
-
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:
@@ -45,7 +45,8 @@ jobs:
     runs-on: self-hosted
 
     permissions:
-      id-token: write  # Add this permission for the deploy step
+      id-token: write   # Keep this for OIDC token
+      pages: write      # Add pages: write permission for deploy
 
     steps:
     - name: Deploy to GitHub Pages
