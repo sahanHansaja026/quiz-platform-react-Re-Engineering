@@ -55,6 +55,7 @@ jobs:
     - name: Deploy to GitHub Pages
       uses: actions/deploy-pages@v4
       with:
+        path: './dist'
         token: ${{ secrets.GITHUB_TOKEN }}
         artifact_name: "github-pages-dist"  # Ensure this matches the uploaded artifact name
         preview: false
