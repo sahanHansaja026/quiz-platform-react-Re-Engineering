@@ -16,7 +16,7 @@ jobs:
 
     permissions:
       contents: read
-      id-token: write  # Grant permission for ID token generation
+      id-token: write  # Add this permission
 
     steps:
     - uses: actions/checkout@v4
@@ -37,18 +37,20 @@ jobs:
     - name: Upload build artifact
       uses: actions/upload-artifact@v4
       with:
-        name: github-pages-dist  # Artifact name should match the one used in deploy-pages
-        path: ./dist  # Path to the build output directory
-
+        name: github-pages-dist
+        path: ./dist  # Adjust the path if necessary
 
   deploy:
     needs: build
     runs-on: self-hosted
+
+    permissions:
+      id-token: write  # Add this permission for the deploy step
 
     steps:
     - name: Deploy to GitHub Pages
       uses: actions/deploy-pages@v4
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        artifact_name: "github-pages-dist"  # Should match the artifact name in upload
+        artifact_name: "github-pages-dist"  # Ensure this matches the uploaded artifact name
         preview: false
