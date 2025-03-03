@@ -8,7 +8,6 @@ on:
 
 jobs:
   build:
-
     runs-on: self-hosted
 
     strategy:
@@ -21,7 +20,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    
+
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:
@@ -29,15 +28,29 @@ jobs:
         cache: 'npm'
     
     - name: Install dependencies
-      run: npm ci  # Ensure your lock file is up-to-date
+      run: npm ci
     
     - name: Build project
       run: npm run build --if-present
 
-      
+    # Upload the build artifact for deployment
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: github-pages-dist  # Artifact name should match the one used in deploy-pages
+        path: ./dist  # Path to the build output directory
+
+    - name: Run Tests
+      run: npm test  # Ensure you have a test script in package.json
+
+  deploy:
+    needs: build
+    runs-on: self-hosted
+
+    steps:
     - name: Deploy to GitHub Pages
       uses: actions/deploy-pages@v4
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        artifact_name: "github-pages-dist"  # Ensure unique artifact name
+        token: ${{ secrets.GITHUB_TOKEN }}
+        artifact_name: "github-pages-dist"  # Should match the artifact name in upload
         preview: false
