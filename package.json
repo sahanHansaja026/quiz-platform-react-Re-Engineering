@@ -3,15 +3,15 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-"scripts": {
-  "dev": "vite",
-  "test": "jest",
-  "build": "vite build",
-  "lint": "eslint .",
-  "preview": "vite preview",
-  "predeploy": "npm run build",
-  "deploy": "gh-pages -d dist"
-},
+  "scripts": {
+    "dev": "vite",
+    "test": "jest",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
+  },
   "dependencies": {
     "@firebasegen/default-connector": "file:dataconnect-generated/js/default-connector",
     "@tanstack-query-firebase/react": "^1.0.6",
