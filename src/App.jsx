@@ -9,6 +9,7 @@ import Signup from "./signup";
 import Login from "./login";
 import Navbar from "./components/navbar"; // Assuming you have a Navbar component
 import Home from "./pages/home";
+
 function App() {
   const location = useLocation();
   const nonavbarpath = ["/signup", "/"];
@@ -27,10 +28,10 @@ function App() {
   );
 }
 
-// Wrap the App component with Router at the root level
+// ✅ Fix: Add basename for GitHub Pages
 export default function Root() {
   return (
-    <Router>
+    <Router basename="/quiz-platform-react-Re-Engineering">
       <App />
     </Router>
   );
