@@ -7,7 +7,6 @@ import {
 } from "react-router-dom";
 import Signup from "./signup";
 import Login from "./login";
-import Navbar from "./components/navbar"; // Assuming you have a Navbar component
 import Home from "./pages/home";
 
 function App() {
@@ -16,9 +15,6 @@ function App() {
 
   return (
     <div>
-      {/* Conditionally render Navbar */}
-      {!nonavbarpath.includes(location.pathname) && <Navbar />}
-
       <Routes>
         <Route path="/signup" element={<Signup />} />
         <Route path="/" element={<Login />} />
